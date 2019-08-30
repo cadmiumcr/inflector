@@ -1,6 +1,4 @@
-# cadmium_inflectors
-
-TODO: Write a description here
+# Inflector
 
 ## Installation
 
@@ -8,8 +6,8 @@ TODO: Write a description here
 
    ```yaml
    dependencies:
-     cadmium_inflectors:
-       github: your-github-user/cadmium_inflectors
+     cadmium_inflector:
+       github: cadmiumcr/inflector
    ```
 
 2. Run `shards install`
@@ -17,14 +15,63 @@ TODO: Write a description here
 ## Usage
 
 ```crystal
-require "cadmium_inflectors"
+require "cadmium_inflector"
 ```
 
-TODO: Write usage instructions here
+#### Nouns
 
-## Development
+Nouns can be inflected using the `NounInflector` which has also been attached to the `String` class.
 
-TODO: Write development instructions here
+```crystal
+inflector = Cadmium.noun_inflector.new
+
+inflector.pluralize("radius")
+# => radii
+
+inflector.singularize("radii")
+# => radius
+
+"person".pluralize
+# => people
+
+"people".singularize
+# => person
+```
+
+#### Present Tense Verbs
+
+Present tense verbs can be inflected with the `PresentVerbInflector`. This has also been attached to the string class.
+
+```crystal
+inflector = Cadmium.present_verb_inflector.new
+
+inflector.singularize("become")
+# => became
+
+inflector.pluralize("became")
+# => become
+
+"walk".singularize(false) # noun: false
+# => walks
+
+"walks".pluralize(false)  # noun: false
+# => walk
+```
+
+#### Numbers
+
+Numbers can be inflected with the `CountInflector` which also adds a method `to_nth` to the `Int` class.
+
+```crystal
+Cadmium.count_inflector.nth(1)
+# => 1st
+
+Cadmium.count_inflector.nth(111)
+# => 111th
+
+153.to_nth
+# => 153rd
+```
 
 ## Contributing
 
@@ -36,4 +83,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [Chris Watson](https://github.com/your-github-user) - creator and maintainer
+- [Chris Watson](https://github.com/watzon) - creator and maintainer
