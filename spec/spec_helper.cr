@@ -1,2 +1,2 @@
 require "spec"
-require "../src/cadmium_inflectors"
+require "../src/cadmium_inflector"
