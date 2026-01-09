@@ -108,6 +108,53 @@ describe Cadmium::NounInflector do
       subject.singularize("antennas").should eq("antenna")
       subject.singularize("formulas").should eq("formula")
     end
+
+    it "should handle -SES to -SE cases" do
+      subject.singularize("impulses").should eq("impulse")
+      subject.singularize("responses").should eq("response")
+      subject.singularize("licenses").should eq("license")
+      subject.singularize("verses").should eq("verse")
+      subject.singularize("courses").should eq("course")
+    end
+
+    it "should handle Latin -A to -UM cases" do
+      subject.singularize("data").should eq("datum")
+      subject.singularize("media").should eq("medium")
+      subject.singularize("curricula").should eq("curriculum")
+      subject.singularize("memoranda").should eq("memorandum")
+      subject.singularize("bacteria").should eq("bacterium")
+      subject.singularize("errata").should eq("erratum")
+      subject.singularize("ova").should eq("ovum")
+      subject.singularize("agenda").should eq("agendum")
+      subject.singularize("referenda").should eq("referendum")
+      subject.singularize("spectra").should eq("spectrum")
+      subject.singularize("strata").should eq("stratum")
+    end
+
+    it "should handle Greek -A to -ON cases" do
+      subject.singularize("criteria").should eq("criterion")
+      subject.singularize("phenomena").should eq("phenomenon")
+      subject.singularize("automata").should eq("automaton")
+    end
+
+    it "should handle extended -VES to -F cases" do
+      subject.singularize("wolves").should eq("wolf")
+      subject.singularize("calves").should eq("calf")
+      subject.singularize("scarves").should eq("scarf")
+      subject.singularize("leaves").should eq("leaf")
+      subject.singularize("hooves").should eq("hoof")
+    end
+
+    it "should handle French -EAU to -EAUX cases" do
+      subject.singularize("bureaux").should eq("bureau")
+      subject.singularize("tableaux").should eq("tableau")
+      subject.singularize("chateaux").should eq("chateau")
+      subject.singularize("plateaux").should eq("plateau")
+    end
+
+    it "should handle QUIZ cases" do
+      subject.singularize("quizzes").should eq("quiz")
+    end
   end
 
   describe "#pluralize" do
@@ -153,7 +200,6 @@ describe Cadmium::NounInflector do
       subject.pluralize("church").should eq("churches")
       subject.pluralize("appendix").should eq("appendixes")
       subject.pluralize("mess").should eq("messes")
-      subject.pluralize("quiz").should eq("quizes")
       subject.pluralize("shoe").should eq("shoes")
     end
 
@@ -219,6 +265,45 @@ describe Cadmium::NounInflector do
       subject.pluralize("nebula").should eq("nebulae")
       subject.pluralize("vertebra").should eq("vertebrae")
       subject.pluralize("vita").should eq("vitae")
+    end
+
+    it "should handle Latin -UM to -A cases" do
+      subject.pluralize("datum").should eq("data")
+      subject.pluralize("medium").should eq("media")
+      subject.pluralize("curriculum").should eq("curricula")
+      subject.pluralize("memorandum").should eq("memoranda")
+      subject.pluralize("bacterium").should eq("bacteria")
+      subject.pluralize("erratum").should eq("errata")
+      subject.pluralize("ovum").should eq("ova")
+      subject.pluralize("agendum").should eq("agenda")
+      subject.pluralize("referendum").should eq("referenda")
+      subject.pluralize("spectrum").should eq("spectra")
+      subject.pluralize("stratum").should eq("strata")
+    end
+
+    it "should handle Greek -ON to -A cases" do
+      subject.pluralize("criterion").should eq("criteria")
+      subject.pluralize("phenomenon").should eq("phenomena")
+      subject.pluralize("automaton").should eq("automata")
+    end
+
+    it "should handle extended -F to -VES cases" do
+      subject.pluralize("wolf").should eq("wolves")
+      subject.pluralize("calf").should eq("calves")
+      subject.pluralize("scarf").should eq("scarves")
+      subject.pluralize("leaf").should eq("leaves")
+      subject.pluralize("hoof").should eq("hooves")
+    end
+
+    it "should handle French -EAU to -EAUX cases" do
+      subject.pluralize("bureau").should eq("bureaux")
+      subject.pluralize("tableau").should eq("tableaux")
+      subject.pluralize("chateau").should eq("chateaux")
+      subject.pluralize("plateau").should eq("plateaux")
+    end
+
+    it "should handle QUIZ cases" do
+      subject.pluralize("quiz").should eq("quizzes")
     end
   end
 end
